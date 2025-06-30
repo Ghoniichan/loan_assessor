@@ -4,14 +4,23 @@ import joblib
 import pandas as pd
 
 app = FastAPI()
+
+print("Loading model...")
 model = joblib.load("logistic_regression_model.joblib")
+print("Model loaded.")
 scaler = joblib.load("scaler.joblib")
+print("Scaler loaded.")
+
 feature_names = ["ratio_loan", "ratio_savings"]
 
 class LoanRequest(BaseModel):
     loan_amount: float
     capital_share: float
     savings: float
+
+@app.get("/")
+def health_check():
+    return {"status": "ok"}
 
 @app.post("/predict")
 def predict_loan(req: LoanRequest):
