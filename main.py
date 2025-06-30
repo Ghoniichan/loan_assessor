@@ -4,8 +4,8 @@ import joblib
 import pandas as pd
 
 app = FastAPI()
-model = joblib.load("loan_assessor/logistic_regression_model.joblib")
-scaler = joblib.load("loan_assessor/scaler.joblib")
+model = joblib.load("logistic_regression_model.joblib")
+scaler = joblib.load("scaler.joblib")
 feature_names = ["ratio_loan", "ratio_savings"]
 
 class LoanRequest(BaseModel):
